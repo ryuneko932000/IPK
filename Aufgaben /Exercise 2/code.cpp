@@ -30,26 +30,23 @@ int fibonacci(int number){
 
     std::cout << "\033[92mGegebene N für Fibonacci: \033[0m" << number << std::endl;
     unsigned long int n1 = 0, n2 = 1 , next = 0;
-    int counter = 1; 
 
     for (int i = 1; i <= number; ++i){
     
         if (i == 1){
             std::cout << "\n\033[1;4;33mErgebnis: \033[0m" << std::endl;
             std::cout << n1 << ", ";
-            counter = counter + 1;
             continue;
         }
         else if (i == 2){
             std::cout << n2 << ", ";
-            counter = counter + 1;
             continue; 
         }
         next = n1 + n2;
         n1 = n2;
         n2 = next;
-        counter = counter + 1;
-        if (counter > number){
+
+        if (i == number){
             std::cout << next << "." << std::endl;
         } else {
             std::cout << next << ", ";
