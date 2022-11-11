@@ -63,11 +63,9 @@ int iterative(int q , int n){
     
     
     int potenz = q;
-    int counter = 0;
-    for(int i = 2; i <= n; ++i){
-        counter = counter + 1;
-        std::string counterString = std::to_string(counter);
-        std::cout << "\033[33mSchritt \033[0m" << "\033[33m" << counterString << ". " <<"\033[0m" << q << std::endl;
+    
+    for(int i = 1; i < n; ++i){
+        std::cout << "\033[33mSchritt \033[0m" << "\033[33m" << i << ". " <<"\033[0m" << q << std::endl;
         q = q * potenz;
     }
     std::cout << "\033[1;4;33mEndprodukt: \033[0m" << q << std::endl; 
@@ -76,9 +74,13 @@ int iterative(int q , int n){
 
 int recursive(int q, int n ){
     if(n==0){ 
-    return 1;
+        return 1;
+    } else if(n < 0){
+        std::cerr <<"nan" <<"\n\n\033[1;4;41mZahl für Potenz nicht gültig!\033[0m" << std::endl; 
+        return 1;
     }
-    return (q*recursive(q, n-1));
+    unsigned long long int end = (q*recursive(q, n-1));
+    return end;
 }
 
 int potenz(){
@@ -106,9 +108,11 @@ int potenz(){
         std::cout << "\n\033[93mGeben sie eine Potenz: \033[0m";
         std::cin >> n;
         std::cout << "\033[1;4;33mEndprodukt: \033[0m" << recursive(q,n) << std::endl;
+    } else {
+        std::cerr << "\033[1;4;41mBitte schreiben Sie eine gültige Zahl!\033[0m" << std::endl;
+        return 1;
     }
     return 0;
-
 }
 
 int main(){
